@@ -1,0 +1,26 @@
+{
+  "binary": "/opt/llama-rocm/ROCmFPX/build/bin/llama-server",
+  "port": 18080,
+  "ctx_size": 32768,
+  "gen_tokens": 256,
+  "runs": 3,
+  "prompt_targets": [8000, 32000],
+  "outdir": "./bench-out",
+  "env": {
+    "LD_LIBRARY_PATH": "/opt/llama-rocm/ROCmFPX/build/bin:/opt/rocm/lib",
+    "HSA_OVERRIDE_GFX_VERSION": "11.5.1",
+    "GGML_HIP_ENABLE_UNIFIED_MEMORY": "1"
+  },
+  "server_args": [
+    "--flash-attn", "on",
+    "-dio",
+    "--cache-type-k", "q8_0",
+    "--cache-type-v", "q8_0",
+    "--parallel", "1",
+    "--temp", "0.3"
+  ],
+  "models": {
+    "ROCmFP4_STRIX_LEAN": "/path/to/Model-Q4_0_ROCMFP4_STRIX_LEAN.gguf",
+    "Q4_K_M": "/path/to/Model-Q4_K_M.gguf"
+  }
+}
