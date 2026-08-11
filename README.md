@@ -16,9 +16,9 @@ If you're deciding whether to spend a day quantizing something, that's the call 
 
 | Model | Arch | Active params | Decode @ short ctx | Decode @ long ctx | Size | Verdict |
 |---|---|---:|---:|---:|---:|---|
-| [Laguna-S-2.1 118B-A8B](https://huggingface.co/kingjones777/Laguna-S-2.1-Q4_0_ROCMFP4_STRIX_LEAN-GGUF) | `laguna` | ~8B | **+62.6%** | **+43.6%** | −18% | ship it |
-| [Step-3.7-Flash 198B MoE](https://huggingface.co/kingjones777/Step-3.7-Flash-Q4_0_ROCMFP4_STRIX_LEAN-GGUF) | `step35` | ~11B | **+18%** | **+20%** | +10% | ship it |
-| [Leanstral-1.5 119B-A6B](https://huggingface.co/kingjones777/Leanstral-1.5-119B-A6B-Q4_0_ROCMFP4_STRIX_LEAN-GGUF) | `deepseek2` (MLA) | ~6.5B | +1.5% | **−8.2%** | −13% | size only |
+| [Laguna-S-2.1 118B-A8B](https://huggingface.co/kingjones777/Laguna-S-2.1-ROCmFP4-STRIX_LEAN-GGUF) | `laguna` | ~8B | **+62.6%** | **+43.6%** | −18% | ship it |
+| [Step-3.7-Flash 198B MoE](https://huggingface.co/kingjones777/Step-3.7-Flash-ROCmFP4-STRIX_LEAN-GGUF) | `step35` | ~11B | **+18%** | **+20%** | +10% | ship it |
+| [Leanstral-1.5 119B-A6B](https://huggingface.co/kingjones777/Leanstral-1.5-119B-A6B-ROCmFP4-STRIX_LEAN-GGUF) | `deepseek2` (MLA) | ~6.5B | +1.5% | **−8.2%** | −13% | size only |
 | KAT-Coder-V2.5-Dev 35B-A3B | `qwen35moe` (hybrid linear) | ~3B | +12% | **−37%** | −2.4 GiB | discarded |
 
 **Baselines are not uniform, and that matters.** Laguna, Leanstral and KAT-Coder were measured against `Q4_K_M`. Step-3.7-Flash was measured against `UD-IQ4_XS`. That's why Step-3.7 shows a size *increase* — ROCmFP4 Strix Lean is ~4.26 BPW and IQ4_XS is ~3.9 BPW, so it's a higher-bit quant winning on speed while costing disk. Against Q4_K_M, ROCmFP4 has come out 13–18% smaller every time.
@@ -51,9 +51,50 @@ All results measured on a Ryzen AI Max+ 395 (gfx1151 / Radeon 8060S), 128 GB uni
 
 Build and runtime recipes — including the flags that are genuinely mandatory rather than merely recommended — are in [`recipes/`](recipes/). The operational traps that cost me real time are collected in [`docs/gotchas.md`](docs/gotchas.md); if you're doing this yourself, that file is probably the most useful thing in the repo.
 
-## Models
+## Published models
 
-Published quants live on HuggingFace under [kingjones777](https://huggingface.co/kingjones777). They require the ROCmFPX fork — `Q4_0_ROCMFP4_*` is not a stock llama.cpp quant type and these files will not load in upstream llama.cpp, Ollama, or LM Studio.
+Every published quant, with what each repository actually contains. Sizes are
+the total of all weight files in the repo — several ship multiple quant
+variants, a DFlash speculative drafter, or a vision projector.
+
+### ROCmFP4 — AMD Strix Halo / gfx1151 (requires the ROCmFPX fork)
+
+| Model | Base model | Repo size | Contents |
+|---|---|---:|---|
+| [`BTL-4-ROCmFP4-STRIX-GGUF`](https://huggingface.co/kingjones777/BTL-4-ROCmFP4-STRIX-GGUF) | [`badtheorylabs/BTL-4`](https://huggingface.co/badtheorylabs/BTL-4) | 18.2 GiB | vision |
+| [`BTL-4-ROCmFP4-STRIX_LEAN-GGUF`](https://huggingface.co/kingjones777/BTL-4-ROCmFP4-STRIX_LEAN-GGUF) | [`badtheorylabs/BTL-4`](https://huggingface.co/badtheorylabs/BTL-4) | 18.2 GiB | vision |
+| [`DeepSeek-V4-Flash-0731-ROCmFP4`](https://huggingface.co/kingjones777/DeepSeek-V4-Flash-0731-ROCmFP4) | [`deepseek-ai/DeepSeek-V4-Flash-0731`](https://huggingface.co/deepseek-ai/DeepSeek-V4-Flash-0731) | 100.4 GiB | single model |
+| [`DeepSeek-V4-Flash-180B-ROCmFP4-STRIX_LEAN-GGUF`](https://huggingface.co/kingjones777/DeepSeek-V4-Flash-180B-ROCmFP4-STRIX_LEAN-GGUF) | [`deepseek-ai/DeepSeek-V4-Flash-180B`](https://huggingface.co/deepseek-ai/DeepSeek-V4-Flash-180B) | 181.7 GiB | 2 quant variants |
+| [`GLM-4.7-Flash-ROCmFP4-STRIX-GGUF`](https://huggingface.co/kingjones777/GLM-4.7-Flash-ROCmFP4-STRIX-GGUF) | [`zai-org/GLM-4.7-Flash`](https://huggingface.co/zai-org/GLM-4.7-Flash) | 14.9 GiB | single model |
+| [`Instella-MoE-16B-A3B-Think-ROCmFP4-STRIX-GGUF`](https://huggingface.co/kingjones777/Instella-MoE-16B-A3B-Think-ROCmFP4-STRIX-GGUF) | [`amd/Instella-MoE-16B-A3B-Think`](https://huggingface.co/amd/Instella-MoE-16B-A3B-Think) | 7.9 GiB | single model |
+| [`Instella-ToolCall-16B-A3B-ROCmFP4-STRIX-GGUF`](https://huggingface.co/kingjones777/Instella-ToolCall-16B-A3B-ROCmFP4-STRIX-GGUF) | [`amd/Instella-MoE-16B-A3B-Think`](https://huggingface.co/amd/Instella-MoE-16B-A3B-Think) | 8.0 GiB | single model |
+| [`Laguna-S-2.1-ROCmFP4-STRIX_LEAN-GGUF`](https://huggingface.co/kingjones777/Laguna-S-2.1-ROCmFP4-STRIX_LEAN-GGUF) | [`poolside/Laguna-S-2.1`](https://huggingface.co/poolside/Laguna-S-2.1) | 58.3 GiB | single model |
+| [`Leanstral-1.5-119B-A6B-ROCmFP4-STRIX_LEAN-GGUF`](https://huggingface.co/kingjones777/Leanstral-1.5-119B-A6B-ROCmFP4-STRIX_LEAN-GGUF) | [`mistralai/Leanstral-1.5-119B-A6B`](https://huggingface.co/mistralai/Leanstral-1.5-119B-A6B) | 59.0 GiB | single model |
+| [`Muse-Glimmer-30B-ROCmFP4-Strix-Halo-DFlash-GGUF`](https://huggingface.co/kingjones777/Muse-Glimmer-30B-ROCmFP4-Strix-Halo-DFlash-GGUF) | [`meta-models/Muse-Glimmer-30B`](https://huggingface.co/meta-models/Muse-Glimmer-30B) | 63.0 GiB | 4 quant variants, drafter, vision |
+| [`North-Mini-Code-1.0-ROCmFP4-STRIX-GGUF`](https://huggingface.co/kingjones777/North-Mini-Code-1.0-ROCmFP4-STRIX-GGUF) | [`CohereLabs/North-Mini-Code-1.0`](https://huggingface.co/CohereLabs/North-Mini-Code-1.0) | 15.3 GiB | single model |
+| [`Qwen3-Next-80B-A3B-Instruct-ROCmFP4-STRIX-GGUF`](https://huggingface.co/kingjones777/Qwen3-Next-80B-A3B-Instruct-ROCmFP4-STRIX-GGUF) | [`Qwen/Qwen3-Next-80B-A3B-Instruct`](https://huggingface.co/Qwen/Qwen3-Next-80B-A3B-Instruct) | 39.7 GiB | single model |
+| [`Step-3.7-Flash-ROCmFP4-STRIX_LEAN-GGUF`](https://huggingface.co/kingjones777/Step-3.7-Flash-ROCmFP4-STRIX_LEAN-GGUF) | [`stepfun-ai/Step-3.7-Flash`](https://huggingface.co/stepfun-ai/Step-3.7-Flash) | 101.4 GiB | vision |
+
+### NVFP4 — NVIDIA
+
+| Model | Base model | Repo size | Contents |
+|---|---|---:|---|
+| [`Frontis-MA1-35B-NVFP4`](https://huggingface.co/kingjones777/Frontis-MA1-35B-NVFP4) | [`FrontisAI/Frontis-MA1-35B`](https://huggingface.co/FrontisAI/Frontis-MA1-35B) | 23.3 GiB | single model |
+| [`Instella-ToolCall-16B-A3B-NVFP4`](https://huggingface.co/kingjones777/Instella-ToolCall-16B-A3B-NVFP4) | [`amd/Instella-MoE-16B-A3B-Think`](https://huggingface.co/amd/Instella-MoE-16B-A3B-Think) | 9.0 GiB | single model |
+| [`Ling-3.0-flash-NVFP4-SGLang-MTP`](https://huggingface.co/kingjones777/Ling-3.0-flash-NVFP4-SGLang-MTP) | [`inclusionAI/Ling-3.0-flash`](https://huggingface.co/inclusionAI/Ling-3.0-flash) | 75.8 GiB | single model |
+| [`Macaron-V1-Tall-NVFP4`](https://huggingface.co/kingjones777/Macaron-V1-Tall-NVFP4) | [`mindlab-research/Macaron-V1-Tall`](https://huggingface.co/mindlab-research/Macaron-V1-Tall) | 23.3 GiB | single model |
+
+### Other
+
+| Model | Base model | Repo size | Contents |
+|---|---|---:|---|
+| [`Macaron-V1-Tall-LoRA-BF16`](https://huggingface.co/kingjones777/Macaron-V1-Tall-LoRA-BF16) | [`mindlab-research/Macaron-V1-Tall`](https://huggingface.co/mindlab-research/Macaron-V1-Tall) | 28.1 GiB | 4 quant variants |
+
+All ROCmFP4 files require the [ROCmFPX fork](https://github.com/charlie12345/ROCmFPX) —
+`Q4_0_ROCMFP4_*` is not a stock llama.cpp quant type and these files will not load
+in upstream llama.cpp, Ollama, or LM Studio. Profile:
+[huggingface.co/kingjones777](https://huggingface.co/kingjones777).
+
 
 ## License
 
