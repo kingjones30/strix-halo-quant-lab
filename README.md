@@ -63,7 +63,7 @@ Because `Q4_0_ROCMFP4` is a genuinely new tensor type, not a relabeled standard 
 
 Concretely: in the Granite-4.1-30b 4-bit build, **448 of 578 tensors** are type `Q4_0_ROCMFP4`. There is no metadata edit or repo tag that makes a stock runtime read them. You need the fork.
 
-**Lemonade Server is the exception** — AMD's own local server lets you point it at your own engine (`lemonade config set llamacpp.rocm_bin /path/to/bins`), so ROCmFP4 models can be served through a standard OpenAI-compatible front end. See [`recipes/lemonade.md`](recipes/lemonade.md).
+**Lemonade Server is the exception, and it is verified working.** AMD's own local server can be pointed at your own engine (`lemonade config set llamacpp.rocm_bin=/path/to/rocmfpx/llama-server`), so ROCmFP4 models serve through a standard OpenAI-compatible API. Measured 2026-08-17 on Lemonade 10.5.1: **98.5–101.6 tok/s** end-to-end for Ling-3.0-tiny FP4, against 105.2 tok/s for the same model on bare `llama-server` — the wrapper costs almost nothing. Full recipe, including two Lemonade path bugs whose error messages look like quantization failures: [`recipes/lemonade.md`](recipes/lemonade.md).
 
 ## The short version
 
