@@ -1,6 +1,6 @@
 # Strix Halo Quant Lab
 
-**Running large language models locally on AMD Ryzen AI Max+ 395 (Strix Halo) with ROCmFP4 4-bit quantization — measured benchmarks, build recipes, and 55 ready-to-run GGUF models.**
+**Running large language models locally on AMD Ryzen AI Max+ 395 (Strix Halo) with ROCmFP4 4-bit quantization — measured benchmarks, build recipes, and 118 ready-to-run GGUF models.**
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Hardware: Ryzen AI Max+ 395](https://img.shields.io/badge/hardware-Ryzen%20AI%20Max%2B%20395-ED1C24)](https://www.amd.com/en/products/processors/laptop/ryzen/ai-max.html)
@@ -155,7 +155,7 @@ The harness is in [`bench/`](bench/). Four things it does that I'd consider non-
 
 ## Published models
 
-**55 repositories** — 50 ROCmFP4/ROCmFPX for AMD Strix Halo, 4 NVFP4 for NVIDIA, 1 other.
+**118 repositories** — 108 ROCmFP4/ROCmFPX for AMD Strix Halo, 9 NVFP4 for NVIDIA, 1 other. **126,066 downloads** in the last 30 days.
 
 **→ [Full index with sizes, base models and contents: `MODELS.md`](MODELS.md)**
 
@@ -167,11 +167,20 @@ python3 tools/gen_model_index.py > MODELS.md
 
 Highlights, all first published builds of their kind in this format:
 
-- **Granite-4.1-30b** — 4 quants, dense 30B, 13.1 tok/s at 83.5% of peak bandwidth
-- **Llama-4-Scout-17B-16E** — 57 GiB, vision verified
-- **LFM2-8B-A1B / LFM2-24B-A2B** — 4 quants each, 146.6 / 95.2 tok/s
-- **Gemma-4 E2B / E4B / 31B / 26B-A4B** — MatFormer, vision, mmproj shipped
+- **Qwen3.8-Flash-Next** — the first `qwen4exp` GGUFs published anywhere; 5 repos across FAST / STRIX /
+  STRIX_LEAN and uncensored variants, 131K context proven on a 128 GB box
+- **Ornith-1.5 35B-A3B and 9B** — full ROCmFP4 ladders plus abliterated and NVFP4-vision variants.
+  On the 35B, **Vulkan is +8.6–14.4% on decode while ROCm is +45–67% on prefill** — the backend is worth
+  ~10× the tier. That ranking **does not transfer** to the dense 9B, where the two backends are within ~1%.
+- **Granite-4.2 3B / 8B / 30B** — 4 tiers each (COHERENT, STRIX_LEAN, Q8_0, Q8_0-AGENT)
+- **LFM2.5 1.2B / 2.6B / 8B-A1B** — ROCmFP4 + DSpark drafters + NVFP4, 11 repos
+- **Ling-3.0 flash / tiny** — base, midtrain and 30T training stages published separately
+- **Granite-4.1 3B / 8B / 30B** — dense; the 30B runs 13.1 tok/s at 83.5% of peak bandwidth
+- **Gemma-4 E2B / E4B / 12B / 31B / 26B-A4B** — MatFormer, vision, mmproj shipped
+- **LFM2-8B-A1B / LFM2-24B-A2B** — 146.6 / 95.2 tok/s
+- **Tiel-Coder-35B-A3B**, **Apodex-1.1-mini**, **DiffusionGemma-26B-A4B**, **Qwen3-VL-8B**
 - **DeepSeek-V4-Flash-180B** — 181.7 GiB
+- **Llama-4-Scout-17B-16E** — 57 GiB, vision verified
 
 ## Hardware and runtime
 
