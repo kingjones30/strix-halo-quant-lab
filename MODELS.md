@@ -1,8 +1,8 @@
 # Published models
 
-**122 repositories** — 112 ROCmFP4/ROCmFPX for AMD Strix Halo, 9 NVFP4 for NVIDIA, 1 other. **139,459 downloads** in the last 30 days.
+**123 repositories** — 113 ROCmFP4/ROCmFPX for AMD Strix Halo, 9 NVFP4 for NVIDIA, 1 other. **139,459 downloads** in the last 30 days.
 
-Generated from the Hugging Face API on 2026-09-01 by [`tools/gen_model_index.py`](tools/gen_model_index.py). Sizes are the sum of every file in the repository. Re-run the script to refresh.
+Generated from the Hugging Face API on 2026-09-02 by [`tools/gen_model_index.py`](tools/gen_model_index.py). Sizes are the sum of every file in the repository. Re-run the script to refresh.
 
 Full profile: [huggingface.co/kingjones777](https://huggingface.co/kingjones777)
 
@@ -124,6 +124,7 @@ Full profile: [huggingface.co/kingjones777](https://huggingface.co/kingjones777)
 | [`LFM2.5-2.6B-DSpark-ROCmFPX-GGUF`](https://huggingface.co/kingjones777/LFM2.5-2.6B-DSpark-ROCmFPX-GGUF) | [`LiquidAI/LFM2.5-2.6B-DSpark`](https://huggingface.co/LiquidAI/LFM2.5-2.6B-DSpark) | 1.0 GiB | 2 quant variants | 49 |
 | [`Agents-A1-Abliterated-MTP-ROCmFP4-GGUF`](https://huggingface.co/kingjones777/Agents-A1-Abliterated-MTP-ROCmFP4-GGUF) | [`huihui-ai/Huihui-Agents-A1-abliterated-GGUF`](https://huggingface.co/huihui-ai/Huihui-Agents-A1-abliterated-GGUF) | 95.5 GiB | 4 quant variants, vision projector, speculative drafter | 0 |
 | [`KAT-Coder-V2.5-Dev-Abliterated-MTP-ROCmFP4-GGUF`](https://huggingface.co/kingjones777/KAT-Coder-V2.5-Dev-Abliterated-MTP-ROCmFP4-GGUF) | [`jakeroxs/KAT-Coder-V2.5-Dev-35B-A3B-MTP-ABLITERATED-GGUF`](https://huggingface.co/jakeroxs/KAT-Coder-V2.5-Dev-35B-A3B-MTP-ABLITERATED-GGUF) | 94.6 GiB | 4 quant variants, speculative drafter | 0 |
+| [`Sarvam-30B-ROCmFP4-GGUF`](https://huggingface.co/kingjones777/Sarvam-30B-ROCmFP4-GGUF) | [`sarvamai/sarvam-30b`](https://huggingface.co/sarvamai/sarvam-30b) | 81.5 GiB | 4 quant variants | 0 |
 
 ## NVFP4 — NVIDIA (vLLM / SGLang)
 
