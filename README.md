@@ -155,7 +155,7 @@ The harness is in [`bench/`](bench/). Four things it does that I'd consider non-
 
 ## Published models
 
-**124 repositories** — 114 ROCmFP4/ROCmFPX for AMD Strix Halo, 9 NVFP4 for NVIDIA, 1 other. **145,776 downloads** in the last 30 days.
+**124 repositories** — 114 ROCmFP4/ROCmFPX for AMD Strix Halo, 9 NVFP4 for NVIDIA, 1 other. **161,870 downloads** in the last 30 days.
 
 **→ [Full index with sizes, base models and contents: `MODELS.md`](MODELS.md)**
 
