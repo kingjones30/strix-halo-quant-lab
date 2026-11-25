@@ -1,6 +1,6 @@
 # Strix Halo Quant Lab
 
-**Running large language models locally on AMD Ryzen AI Max+ 395 (Strix Halo) with ROCmFP4 4-bit quantization — measured benchmarks, build recipes, and 175 ready-to-run GGUF models.**
+**Running large language models locally on AMD Ryzen AI Max+ 395 (Strix Halo) with ROCmFP4 4-bit quantization — measured benchmarks, build recipes, and 180 ready-to-run GGUF models.**
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Hardware: Ryzen AI Max+ 395](https://img.shields.io/badge/hardware-Ryzen%20AI%20Max%2B%20395-ED1C24)](https://www.amd.com/en/products/processors/laptop/ryzen/ai-max.html)
@@ -155,7 +155,7 @@ The harness is in [`bench/`](bench/). Four things it does that I'd consider non-
 
 ## Published models
 
-**175 repositories** — 149 ROCmFP4/ROCmFPX for AMD Strix Halo, 11 NVFP4 for NVIDIA, 15 other. **37,273 downloads** in the last 30 days.
+**180 repositories** — 149 ROCmFP4/ROCmFPX for AMD Strix Halo, 11 NVFP4 for NVIDIA, 20 other. **37,996 downloads** in the last 30 days.
 
 **→ [Full index with sizes, base models and contents: `MODELS.md`](MODELS.md)**
 
