@@ -2,7 +2,7 @@
 
 **180 repositories** — 149 ROCmFP4/ROCmFPX for AMD Strix Halo, 11 NVFP4 for NVIDIA, 20 other. **37,996 downloads** in the last 30 days.
 
-Generated from the Hugging Face API on 2026-11-25 by [`tools/gen_model_index.py`](tools/gen_model_index.py). Sizes are the sum of every file in the repository. Re-run the script to refresh.
+Generated from the Hugging Face API on 2026-11-26 by [`tools/gen_model_index.py`](tools/gen_model_index.py). Sizes are the sum of every file in the repository. Re-run the script to refresh.
 
 Full profile: [huggingface.co/kingjones777](https://huggingface.co/kingjones777)
 
